@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Kalam-AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+  button {
+    /* color: #17275B;
+    background: none;
+    border:none; */
+    color: #fff;
+    background: rgb(65, 185, 220);
+    border-radius: 6px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+    padding: .5em 1em;
+    margin: 1.5 em;
+    position: relative;
+    right: 10px;
+    top: 50%;
+
+  /* position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #17275B;
+  transition: all 300ms; */
+  }
+  
+  button_pos{
+    position: absolute;
+    right: 50%;
+  }
+
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Quicksand";
+  box-sizing: border-box;
+}
+
+#vd1{
+  position: absolute;
+  top: 100px;
+  right: 50%;
+}
+
+.main {
+  background: #43C6AC;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #191654, #43C6AC);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #191654, #43C6AC);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.main .instruction-list{
+	text-align:left;
+	font-family: "Poppins";
+	font-weight: 500;
+	font-size: 15px;
+	margin: 1px 0;
+}
+.main .card {
+	position:absolute;
+	right:20%;
+	background-color: #fff;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	padding: 30px;
+	max-width: 300px;
+/* 	min-height: 130px; */
+	height:auto;
+/* 	margin: 10px 0; */
+	transition: all 0.5s ease;
+	overflow: hidden;
+}
+
+.main .card:hover {
+	box-shadow: 8px 28px 50px rgba(39, 44, 49, 0.07),
+		1px 6px 12px rgba(39, 44, 49, 0.04);
+	transform: translate3D(0, -1px, 0) scale(1.02);
+	transition: all 0.5s ease;
+}
+
+.main .left {
+	margin-right: 12.5px;
+}
+.main .right {
+	margin-left: 12.5px;
+}
+.main h1 {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 50px;
+  max-width: 700px;
+  font-weight: 400;
+  padding-top: 50px;
+  margin-left: 200px;
+}
+.main .vd {
+  margin-top: 30px;
+  position: absolute;
+  top: 100px;
+  right: 50%;
+  /* text-align: center; */
+}
+.main .chatbox {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  background: #fff;
+  width: 250px;
+  border-radius: 6px;
+}
+.main .chatbox .header {
+  border-bottom: solid 1px rgba(51, 51, 51, 0.2);
+  padding: 10px;
+}
+.main .chatbox .header p {
+  font-size: 12px;
+}
+.main .chatbox .header .icon {
+  background: url("https://media3.giphy.com/media/NHIecaiSc7YjK/200w.webp") -10px center;
+  width: 30px;
+  height: 30px;
+  float: left;
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.main .chatbox .chat {
+  height: 500px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  overflow-y: scroll;
+}
+.main .chatbox .chat p {
+  background: #17275B;
+  color: #fff;
+  border-radius: 9px;
+  padding: 8px 10px;
+  display: inline-block;
+  max-width: calc(100% - 20px);
+  margin-top: 15px;
+  position: relative;
+  margin-bottom: 10px;
+  clear: both;
+}
+.main .chatbox .chat p:before {
+  content: attr(data-time);
+  color: #cccccc;
+  left: 4px;
+  font-size: 12px;
+  top: -15px;
+  position: absolute;
+}
+.main .chatbox .chat p.self {
+  float: right;
+  margin-left: auto;
+  background: #CC0C63;
+}
+.main .chatbox .chat p.self:before {
+  right: 4px;
+  left: auto;
+}
+.main .chatbox .chat p.ralph {
+  margin-right: auto;
+  float: left;
+}
+.main .chatbox .chat p.ralph1 {
+  margin-right: auto;
+  float: left;
+  background: #159C06;
+}
+.main .chatbox .footer {
+  width: 100%;
+  position: relative;
+}
+.main .chatbox .footer p {
+  width: 100%;
+  background: #e6e6e6;
+  padding: 10px;
+  height: 34px;
+  font-size: 12px;
+  border: none;
+  font-weight: 500;
+  display: block;
+  border-bottom: solid 10px #e6e6e6;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  position: relative;
+  overflow-y: scroll;
+}
+.main .chatbox .footer button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #17275B;
+  transition: all 300ms;
+}
+.main .chatbox .footer button:hover {
+  color: #97EAF7;
+}
+.main .chatbox .footer:after {
+  height: 10px;
+  width: 100%;
+  left: 0;
+  display: block;
+  top: 0;
+  position: absolute;
+  z-index: 10;
+  content: "";
+  background: linear-gradient(to bottom, #e6e6e6, rgba(255, 255, 255, 0));
+}
+.main .heart {
+  position: absolute;
+  bottom: 10px;
+  left: 40%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.2);
+}
+
+canvas {
+  display: none;
+}
+
+#mycanvas {position:absolute; top: 0px; left: 0px; z-index: 1; display:none;}
+/* #vid2 {position:absolute; top: 0px; left: 0px; z-index: 2;} */
+
+
+</style>
+</head>
+<body>
+<div class="main">
+  <h1>Welcome, meet <strong>Dr. Kalam AI </strong>
+  </h1>
+  <div> 
+  <div class="chatbox">
+    <div class="header">
+      <div class="icon"></div>
+      <p>Dr. Kalam-AI <br></p>
+    </div>
+  
+    <div class="chat">
+      <p class="ralph1" data-time="14:22">Hi i'm Dr. Kalam, Please feel free to speak with me</p>
+    </div>
+    <div class="footer">
+      <p contenteditable></p>
+      <button class="submit-chat"><i class="fas fa-arrow-circle-right"></i></button>
+    </div>
+  </div>
+  <button id = "mic_button" class = "button_pos"><i class="fa fa-microphone"></i>
+       </button>
+<div class ="vd">
+     
+     <!-- <video id = "vid2" width="100%" height = "auto" autoplay muted loop> -->
+     <video style='border: 2px solid #fff;' id = "vid2" width= "484px" height = "484px" autoplay muted loop>
+
+      <source src="/static/FInal-listening_111.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+    <!-- <canvas id = "mycanvas" width="484px" height="460px"></canvas> -->
+    </video>
+    <!-- <canvas id = "mycanvas" width="100%" height="auto"></canvas> -->
+    <canvas style='border: 2px solid #fff;' id = "mycanvas" width="484px" height="484px"></canvas>
+</div>
+	<div class="card">
+		<div class="left">
+		</div>
+		<div class="right">
+			<ul class="instruction-list">
+          	   	<li>The AI agent uses transformer based language models to extract answers/improvise on Dr. Kalam's autobiography</li><br/>
+          	   	<li>You may converse with this through text using the chat window on the right, or through speech using the microphone icon on the left.</li><br/>
+          	   	<li>A green response refers to an improvisational text using GPT2, and a blue response refers to text directly extracted from the autobiography</li><br/>
+                 <li>The developers don't claim that the AI agent says exactly what Dr. Kalam would say to a specific question.</li><br/>
+	</div>
+  <p class="heart">made with ♥ by Lavanay and Pat</p>
+</div>
+</body>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script type="text/javascript">
+
+  var final = "";
+  var x = false;
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 1;
+  recognition.lang = "en-US";
+
+  // document.querySelector('button').addEventListener('click', () => {
+  //   x = false;
+  //   recognition.start();
+  // });
+
+  document.getElementById('mic_button').addEventListener('click', () => {
+    x = false;
+    recognition.start();
+  });
+
+  function submit_text_aux_audio(val){
+  if(x == true){
+    return;
+  }
+
+  x = true;
+
+  var time = new Date();
+  var res = '';
+  var link = '';
+  var res_source = '';
+  time = addZero(time.getHours()) +':' + addZero(time.getMinutes());
+  $('.chat').append('<p class="self" data-time="'+time+'">'+val+'</p>');
+  $('p[contenteditable]').empty();
+  $(".chat").scrollTop($(".chat")[0].scrollHeight);
+  $.ajax({
+    url: 'process',
+    type: 'POST',
+    data: val,
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    success: function (response) {
+        res = response['result'];
+        link = response['vid'];
+        res_source = response['source'];
+    },
+    error: function () {
+        alert("error");
+    }
+  }); 
+  writeToCanvas();
+  setTimeout(function() {
+    changeSource(link)
+    ralphRespond(res,res_source);
+  }, 1000);
+}
+
+  recognition.onresult = function(event) { 
+    var saidText = "";
+    for (var i = event.resultIndex; i < event.results.length; i++) {
+      if (event.results[i].isFinal) {
+        saidText = event.results[i][0].transcript;
+      } else {
+        saidText += event.results[i][0].transcript;
+      }
+    }
+    final = saidText;
+    setTimeout(function(){
+      submit_text_aux_audio(final);
+    },6000);
+  }
+
+  recognition.addEventListener('error', (e) => {
+    alert("Error: " + e.error);
+  });
+
+  
+  $(document).keypress(function(e) {
+    console.log("Key press has been noted")
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13' && $('p[contenteditable]').is(':focus')) {
+        console.log("Moving to submit_text()");
+        submit_text();
+    }
+});
+
+$('.submit-chat').click(function() {
+  submit_text();
+});
+
+function writeToCanvas() {
+  var canvas = document.getElementById('mycanvas');
+  var player = document.getElementById('vid2');
+
+  // canvas.setAttribute("width", player.videoWidth + "px");
+  // canvas.setAttribute("height", player.videoHeight + "px");
+  
+  canvas.setAttribute("width", "480px");
+  canvas.setAttribute("height", "480px");
+
+  var ctx = canvas.getContext("2d");
+  canvas.style.display = "block";
+
+  ctx.drawImage(player, 0, 0);
+}
+
+function toggleMute() {
+
+  var video=document.getElementById("vid2")
+
+  if(video.muted){
+    video.muted = false;
+  } else {
+    video.muted = true;
+  }
+
+}
+
+function unmute() {
+
+  var video=document.getElementById("vid2")
+
+  if(video.muted){
+    video.muted = false;
+  } 
+}
+
+function changeSource(url) {
+
+  var video = document.getElementById('vid2');
+  var player = document.getElementById('vid2');
+  var canvas = document.getElementById('mycanvas');
+  
+  player.autoplay = true;
+  player.loop = false;
+  unmute();
+  $("#vid2 > source").attr("src", url);
+  video.load();
+
+  document.getElementById('vid2').addEventListener('playing',myHandler1,false);
+  function myHandler1(e) {
+    // player.removeEventListener('playing', firstplay);
+    canvas.style.display = "none";
+    document.getElementById('vid2').removeEventListener('playing',myHandler1);
+  }
+
+
+  document.getElementById('vid2').addEventListener('ended',myHandler,false);
+  function myHandler(e) {
+      // What you want to do after the event
+    // alert('video ended');
+    writeToCanvas();
+    setTimeout(function() {
+      run();
+    }, 50);
+  }
+}
+
+function run(){
+  var video = document.getElementById('vid2');
+  var canvas = document.getElementById('mycanvas');
+
+  toggleMute();
+  video.loop = true;
+  
+  $("#vid2 > source").attr("src", "/static/FInal-listening_111.mp4");
+  video.load();
+  
+  document.getElementById('vid2').addEventListener('playing',myHandler1,false);
+  
+  function myHandler1(e) {
+    // player.removeEventListener('playing', firstplay);
+    canvas.style.display = "none";
+    document.getElementById('vid2').removeEventListener('playing',myHandler1);
+
+  }
+}
+
+function submit_text_aux(val){
+  var time = new Date();
+  var res = '';
+  var link = '';
+  var res_source = '';
+  time = addZero(time.getHours()) +':' + addZero(time.getMinutes());
+  $('.chat').append('<p class="self" data-time="'+time+'">'+val+'</p>');
+  $('p[contenteditable]').empty();
+  $(".chat").scrollTop($(".chat")[0].scrollHeight);
+  $.ajax({
+    url: 'process',
+    type: 'POST',
+    data: val,
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    success: function (response) {
+        res = response['result'];
+        link = response['vid'];
+        res_source = response['source'];
+    },
+    error: function () {
+        alert("error");
+    }
+  }); 
+  writeToCanvas();
+  setTimeout(function() {
+    changeSource(link)
+    ralphRespond(res,res_source);
+  }, 1000);
+}
+
+
+
+function submit_text() {
+  var val = $('p[contenteditable]').text();
+  submit_text_aux(val);
+}
+
+function addZero(v) {
+  if(v <= 9) v = '0'+v;
+  return v
+}
+function ralphRespond(val,source) {
+  var newVal = val;
+  var newtime = new Date();
+  var res_source = source;
+  newtime = addZero(newtime.getHours()) +':' + addZero(newtime.getMinutes());
+  if(source == "GPT2"){
+  $('.chat').append('<p class="ralph1" data-time="'+newtime+'">'+newVal+'</p>');
+  }
+  else{
+    $('.chat').append('<p class="ralph" data-time="'+newtime+'">'+newVal+'</p>');
+  }
+  $(".chat").scrollTop($(".chat")[0].scrollHeight);
+}
+
+// <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+ <!-- <script  src="./script.js"></script> -->
+
+</script>
+<!-- </head>
+<body>
+<div class="main">
+  <h1>Welcome, meet <strong>Dr. Kalam AI </strong>
+  </h1>
+  <div> 
+  <div class="chatbox">
+    <div class="header">
+      <div class="icon"></div>
+      <p>Dr. Kalam-AI <br></p>
+    </div>
+  
+    <div class="chat">
+      <p class="ralph1" data-time="14:22">Hi i'm Dr. Kalam, Please feel free to speak with me</p>
+    </div>
+    <div class="footer">
+      <p contenteditable></p>
+      <button class="submit-chat"><i class="fas fa-arrow-circle-right"></i></button>
+    </div>
+  </div>
+  <button id = "mic_button"><i class="fa fa-microphone"></i>
+       </button>
+<div class="vd">
+     
+     <video style='border: 2px solid #fff;' id = "vid2" width= "484px" height = "484px" autoplay muted loop>
+
+      <source src="/static/FInal-listening_111.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
+    <canvas style='border: 2px solid #fff;' id = "mycanvas" width="484px" height="484px"></canvas>
+
+
+</div>
+  <p class="heart">made with ♥ by Lavanay and Pat</p>
+</div>
+</body> -->
+</html>
