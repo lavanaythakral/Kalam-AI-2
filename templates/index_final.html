@@ -44,12 +44,12 @@
   box-sizing: border-box;
 }
 
-#vd1{
+/*#vd1{
   position: absolute;
   top: 100px;
   right: 50%;
 }
-
+*/
 .main {
   background: #43C6AC;
   /* fallback for old browsers */
@@ -173,11 +173,11 @@
   right: 4px;
   left: auto;
 }
-.main .chatbox .chat p.ralph {
+.main .chatbox .chat p.bot {
   margin-right: auto;
   float: left;
 }
-.main .chatbox .chat p.ralph1 {
+.main .chatbox .chat p.bot1 {
   margin-right: auto;
   float: left;
   background: #159C06;
@@ -256,7 +256,7 @@ canvas {
     </div>
   
     <div class="chat">
-      <p class="ralph1" data-time="14:22">Hi i'm Dr. Kalam, Please feel free to speak with me</p>
+      <p class="bot1" data-time="14:22">Hi i'm Dr. Kalam, Please feel free to speak with me</p>
     </div>
     <div class="footer">
       <p contenteditable></p>
@@ -347,7 +347,7 @@ canvas {
   writeToCanvas();
   setTimeout(function() {
     changeSource(link)
-    ralphRespond(res,res_source);
+    botRespond(res,res_source);
   }, 1000);
 }
 
@@ -498,7 +498,7 @@ function submit_text_aux(val){
   writeToCanvas();
   setTimeout(function() {
     changeSource(link)
-    ralphRespond(res,res_source);
+    botRespond(res,res_source);
   }, 1000);
 }
 
@@ -513,16 +513,16 @@ function addZero(v) {
   if(v <= 9) v = '0'+v;
   return v
 }
-function ralphRespond(val,source) {
+function botRespond(val,source) {
   var newVal = val;
   var newtime = new Date();
   var res_source = source;
   newtime = addZero(newtime.getHours()) +':' + addZero(newtime.getMinutes());
   if(source == "GPT2"){
-  $('.chat').append('<p class="ralph1" data-time="'+newtime+'">'+newVal+'</p>');
+  $('.chat').append('<p class="bot1" data-time="'+newtime+'">'+newVal+'</p>');
   }
   else{
-    $('.chat').append('<p class="ralph" data-time="'+newtime+'">'+newVal+'</p>');
+    $('.chat').append('<p class="bot" data-time="'+newtime+'">'+newVal+'</p>');
   }
   $(".chat").scrollTop($(".chat")[0].scrollHeight);
 }
@@ -544,7 +544,7 @@ function ralphRespond(val,source) {
     </div>
   
     <div class="chat">
-      <p class="ralph1" data-time="14:22">Hi i'm Dr. Kalam, Please feel free to speak with me</p>
+      <p class="bot1" data-time="14:22">Hi i'm Dr. Kalam, Please feel free to speak with me</p>
     </div>
     <div class="footer">
       <p contenteditable></p>
